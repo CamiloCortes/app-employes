@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<div class="container">
+
+
+    <div class="card border-secondary  my-5 md-col-3 lg-col-4">
+        <div class="card-header text-primary">Listado de empleados</div>
+        <div class="card-body text-primary">
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <h5 class="card-title"></h5>
+                    <div class="my-2 text-left">
+                        <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/employe/form']">Crear Empleado</button>
+                    </div>
+                    <div class="alert alert-info" *ngIf="employes?.length==0">
+                        No hay registros en la base de datos!
+                    </div>
+                    <table class="center table table-bordered table-striped table-responsive" *ngIf="employes?.length>0">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>nombre</th>
+                                <th>Rol</th>
+                                <th>email</th>
+                                <th>Jefe asignado</th>
+                                <!-- <th>Editar</th> -->
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let empleado of employes">
+                                <td>{{empleado.id}}</td>
+                                <td>{{empleado.fullname}}</td>
+                                <td>{{empleado.role.descripcion}}</td>
+                                <td>{{empleado.email}}</td>
+                                <td>{{empleado.boss ? empleado.boss.fullname : "No asignado"}}</td>
+                                <!-- <td><button type="button" name="button" [routerLink]="['/clientes/form', empleado.id]" class="btn btn-primary">Editar</button></td> -->
+                                <td><button type="button" name="buttonDelete" (click)='delete(empleado)' class="btn btn-danger">Eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
